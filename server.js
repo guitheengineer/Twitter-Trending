@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const twit = require("twitter");
 const woeid = require("woeid");
+const path = require("path");
 
 const twitter = new twit({
   consumer_key: process.env.API_CONSUMER,
@@ -34,9 +35,7 @@ app.get("/api/trends/:place", (req, res) => {
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.json());
-  app.use(favicon(path.join(dirname, "build", "favicon.ico")));
-  app.use(express.static(path.join(dirname, "build")));
-
+  app.use(express.static(path.join(__dirname, "build")));
   app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "build", "index.html"));
   });

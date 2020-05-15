@@ -24,21 +24,21 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-spinners": "^0.8.3",
+    "serve": "^11.3.0",
     "twit": "^2.2.11",
     "twitter": "^1.7.1",
     "woeid": "^2.0.3"
   },
   "scripts": {
     "sass": "node-sass -w src/sass/main.scss src/App.css",
-    "start": "node server.js",
-    "build": "react-scripts build",
-    "heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "react-start": "react-scripts start",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "client": "npm start",
-    "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
