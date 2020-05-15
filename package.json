@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000/",
-  "homepage": "https://github.com/GuilhermeSND/twittertrendingtopics",
   "presets": [
     "@babel/preset-react",
     "@babel/preset-env"
@@ -34,6 +33,7 @@
     "start": "node server.js",
     "build": "react-scripts build",
     "heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "react-start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "npm start",
