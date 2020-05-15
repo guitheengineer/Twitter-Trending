@@ -12,10 +12,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   useEffect(() => {
     setWidth(window.innerWidth);
-  }, [width]);
+    setHeight(window.innerHeight);
+  }, [width, height]);
 
   useEffect(() => {
     overwrite([
@@ -204,7 +206,13 @@ function App() {
       </div>
 
       {isError && (
-        <span className="App__errormessage">
+        <span
+          className="App__errormessage"
+          style={{
+            transform:
+              height <= 420 ? "translate(-50, 65%)" : "translate(-50, -50)",
+          }}
+        >
           An error has ocurred <br />
           Try again clicking in the refresh icon.
         </span>
