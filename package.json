@@ -31,8 +31,9 @@
   },
   "scripts": {
     "sass": "node-sass -w src/sass/main.scss src/App.css",
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
+    "heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "npm start",
