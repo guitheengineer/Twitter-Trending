@@ -33,6 +33,7 @@ app.get("/api/trends/:place", (req, res) => {
 });
 
 if (process.env.NODE_ENV === "production") {
+  app.use(express.json());
   app.use(favicon(path.join(dirname, "build", "favicon.ico")));
   app.use(express.static(path.join(dirname, "build")));
 
