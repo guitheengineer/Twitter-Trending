@@ -32,11 +32,12 @@ function App() {
           const response = await fetch(`/api/trends/1`);
           const trendsData = await response.json();
           setTrendList(trendsData[0].trends.slice(0, quantityTrends));
+          console.log(trendsData);
         } else {
           const response = await fetch(`/api/trends/${getCode(input)}`);
           const trendsData = await response.json();
-
           setTrendList(trendsData[0].trends.slice(0, quantityTrends));
+          console.log(trendsData);
         }
       } catch (err) {
         console.log(err);
