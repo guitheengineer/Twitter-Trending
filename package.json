@@ -32,8 +32,10 @@
   "scripts": {
     "sass": "node-sass -w src/sass/main.scss src/App.css",
     "react-start": "react-scripts start",
-    "client": "npm start",
-    "dev": "react-scripts start",
+    "client": "npm run start-react",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start-react": "react-scripts start",
     "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
