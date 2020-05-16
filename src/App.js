@@ -210,7 +210,11 @@ function App() {
           className="App__errormessage"
           style={{
             transform:
-              height <= 420 ? "translate(-50%, 65%)" : "translate(-50%, -50%)",
+              height <= 220
+                ? "translate(-50%, 87%)"
+                : height <= 420
+                ? "translate(-50%, 65%)"
+                : "translate(-50%, -50%)",
           }}
         >
           An error has ocurred <br />
