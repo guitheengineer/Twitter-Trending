@@ -3,7 +3,7 @@ const express = require("express");
 const twit = require("twitter");
 const woeid = require("woeid");
 const path = require("path");
-
+console.log(process.env.API_CONSUMER);
 const twitter = new twit({
   consumer_key: process.env.API_CONSUMER,
   consumer_secret: process.env.API_CONSUMER_SECRET,
@@ -15,7 +15,7 @@ const port = process.env.PORT || 5000;
 
 app.get("/api/trends/:place", (req, res) => {
   if (req.params.place) {
-    if (req.params.place === "1") {
+    if (req.params.place == "1") {
       const params = { id: "1" };
       console.log(req.params.place, "req<<");
       twitter.get("trends/place", params, function (error, data, response) {

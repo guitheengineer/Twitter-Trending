@@ -49,7 +49,7 @@ function App() {
           if (input === "" || undefined) {
             const response = await fetch(`/api/trends/1`);
             const trendsData = await response.json();
-            console.log(trendsData);
+            console.log("vazio");
             setTrendList(trendsData[0].trends.slice(0, quantityTrends));
           } else {
             const response = await fetch(`/api/trends/${getCode(input)}`);
@@ -69,12 +69,13 @@ function App() {
   }, [quantityTrends, input, countryExists]);
 
   return (
-    <div style={{ height: `${height + 10}rem` }} className="App">
+    <div className="App">
       <div className="App__location">
         <Autocomplete
           items={countries}
           shouldItemRender={(item, value) =>
-            item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+            item.name.toLowerCase().indexOf(value.toLowerCase()) > -1 &&
+            item.name !== ""
           }
           getItemValue={(item) => item.name}
           inputProps={{
@@ -83,12 +84,25 @@ function App() {
           renderItem={(item, isHighlighted) => (
             <div
               key={item.name}
-              style={{
-                backgroundColor: isHighlighted ? "#EDEDED" : "transparent",
-                borderBottom: "1px solid #E6E6EC",
-                padding: "1rem 2rem",
-                font: "1.3rem Roboto",
-              }}
+              style={
+                width > 562
+                  ? {
+                      backgroundColor: isHighlighted
+                        ? "#EDEDED"
+                        : "transparent",
+                      borderBottom: "1px solid #E6E6EC",
+                      padding: "1rem 1.5rem",
+                      font: "1.3rem Roboto",
+                    }
+                  : {
+                      backgroundColor: isHighlighted
+                        ? "#EDEDED"
+                        : "transparent",
+                      borderBottom: "1px solid #E6E6EC",
+                      padding: "1rem 2rem",
+                      font: "1.3rem Roboto",
+                    }
+              }
             >
               {item.name}
             </div>
@@ -109,7 +123,7 @@ function App() {
                   overflow: "auto",
                   zIndex: "999999",
                   maxHeight: "50%",
-                  left: "2.5rem",
+                  left: "1.5rem",
                 }
               : {
                   borderRadius: "0 0 1.5rem 1.5rem",
@@ -148,11 +162,21 @@ function App() {
                 setIsLoading(true);
                 if (countryExists === true) {
                   try {
-                    const response = await fetch(
-                      `/api/trends/${getCode(input)}`
-                    );
-                    const trendsData = await response.json();
-                    setTrendList(trendsData[0].trends.slice(0, quantityTrends));
+                    if (input === "" || undefined || "Worldwide") {
+                      const response = await fetch(`/api/trends/1`);
+                      const trendsData = await response.json();
+                      setTrendList(
+                        trendsData[0].trends.slice(0, quantityTrends)
+                      );
+                    } else {
+                      const response = await fetch(
+                        `/api/trends/${getCode(input)}`
+                      );
+                      const trendsData = await response.json();
+                      setTrendList(
+                        trendsData[0].trends.slice(0, quantityTrends)
+                      );
+                    }
                   } catch (err) {
                     console.log(err);
                     setIsError(true);
@@ -183,7 +207,7 @@ function App() {
             loading={isLoading}
           />
         </span>
-        {!isError && (
+        {countryExists && !isError && (
           <ol className="App__container--list">
             {trendList.map((tE, index) => (
               <li key={tE.name} className="App__container--list--item">
@@ -210,8 +234,8 @@ function App() {
             ))}
           </ol>
         )}
-        {!isLoading && !isError && (
-          <button
+        {countryExists && !isLoading && !isError && (
+          <span
             className="App__seemore"
             onClick={() => {
               setQuantityTrends((prevQuantity) => prevQuantity + 5);
@@ -222,7 +246,7 @@ function App() {
             {quantityTrends < 50 && (
               <img alt="expand" src="./Arrowdownsee.svg"></img>
             )}
-          </button>
+          </span>
         )}
       </div>
 
@@ -263,6 +287,8 @@ function App() {
 }
 
 const countries = [
+  { name: "" },
+  { name: "Worldwide" },
   { name: "Algeria" },
   { name: "Argentina" },
   { name: "Australia" },

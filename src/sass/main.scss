@@ -58,7 +58,10 @@ body {
       border-width: 0 0 0.1rem 0;
       border-color: #a8a8a8;
       padding: 0.1rem 0.2rem;
-      left: 2.5rem;
+      @include resp(562) {
+        left: 2.5rem;
+      }
+      left: 1.5rem;
       font: 1.7rem Roboto;
       margin-top: -0.1rem;
     }
@@ -155,8 +158,10 @@ body {
   }
   &__seemore {
     position: absolute;
-    margin-top: 1.2rem;
-    right: 1rem;
+    margin-top: 1.5rem;
+    padding-bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
     cursor: pointer;
     span {
       font: 14px Roboto;
