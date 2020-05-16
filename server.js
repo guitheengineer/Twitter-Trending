@@ -22,7 +22,13 @@ app.get("/api/trends/:place", (req, res) => {
         res.json(data);
       });
     } else {
-      const getWoeid = woeid.getWoeid(req.params.place).woeid;
+      const getWoeid = woeid.getWoeid(
+        req.params.place
+          .toLowerCase()
+          .split(" ")
+          .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+          .join(" ")
+      ).woeid;
       const params = { id: getWoeid };
       console.log(getWoeid);
       console.log(req.params.place, "req<<");

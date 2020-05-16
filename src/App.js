@@ -13,6 +13,7 @@ function App() {
   const [isError, setIsError] = useState(false);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
+  const [countryExists, setCountryExists] = useState(false);
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -20,6 +21,20 @@ function App() {
   }, [width, height]);
 
   useEffect(() => {
+    const check = countries.some(
+      (el) =>
+        el.name ===
+        input
+          .toLowerCase()
+          .split(" ")
+          .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+          .join(" ")
+    );
+    if (check) {
+      setCountryExists(true);
+    } else {
+      setCountryExists(false);
+    }
     overwrite([
       {
         code: "RU",
@@ -29,30 +44,32 @@ function App() {
     const fetchData = async () => {
       setIsError(false);
       setIsLoading(true);
-      try {
-        if (input === "" || undefined) {
-          const response = await fetch(`/api/trends/1`);
-          const trendsData = await response.json();
-          console.log(trendsData);
-          setTrendList(trendsData[0].trends.slice(0, quantityTrends));
-        } else {
-          const response = await fetch(`/api/trends/${getCode(input)}`);
-          const trendsData = await response.json();
-          console.log(trendsData);
-          setTrendList(trendsData[0].trends.slice(0, quantityTrends));
-          console.log(trendsData);
+      if (countryExists === true) {
+        try {
+          if (input === "" || undefined) {
+            const response = await fetch(`/api/trends/1`);
+            const trendsData = await response.json();
+            console.log(trendsData);
+            setTrendList(trendsData[0].trends.slice(0, quantityTrends));
+          } else {
+            const response = await fetch(`/api/trends/${getCode(input)}`);
+            const trendsData = await response.json();
+            console.log(trendsData);
+            setTrendList(trendsData[0].trends.slice(0, quantityTrends));
+            console.log(trendsData);
+          }
+        } catch (err) {
+          console.log(err);
+          setIsError(true);
         }
-      } catch (err) {
-        console.log(err);
-        setIsError(true);
       }
       setIsLoading(false);
     };
     fetchData();
-  }, [quantityTrends, input]);
+  }, [quantityTrends, input, countryExists]);
 
   return (
-    <div className="App">
+    <div style={{ height: `${height + 10}rem` }} className="App">
       <div className="App__location">
         <Autocomplete
           items={countries}
@@ -92,7 +109,7 @@ function App() {
                   overflow: "auto",
                   zIndex: "999999",
                   maxHeight: "50%",
-                  left: "1.5rem",
+                  left: "2.5rem",
                 }
               : {
                   borderRadius: "0 0 1.5rem 1.5rem",
@@ -105,7 +122,7 @@ function App() {
                   overflow: "auto",
                   zIndex: "999999",
                   maxHeight: "100%",
-                  left: "1.5rem",
+                  left: "2.5rem",
                 }
           }
         />
@@ -129,13 +146,17 @@ function App() {
               onClick={async () => {
                 setIsError(false);
                 setIsLoading(true);
-                try {
-                  const response = await fetch(`/api/trends/${getCode(input)}`);
-                  const trendsData = await response.json();
-                  setTrendList(trendsData[0].trends.slice(0, quantityTrends));
-                } catch (err) {
-                  console.log(err);
-                  setIsError(true);
+                if (countryExists === true) {
+                  try {
+                    const response = await fetch(
+                      `/api/trends/${getCode(input)}`
+                    );
+                    const trendsData = await response.json();
+                    setTrendList(trendsData[0].trends.slice(0, quantityTrends));
+                  } catch (err) {
+                    console.log(err);
+                    setIsError(true);
+                  }
                 }
                 setIsLoading(false);
               }}
@@ -190,7 +211,7 @@ function App() {
           </ol>
         )}
         {!isLoading && !isError && (
-          <div
+          <button
             className="App__seemore"
             onClick={() => {
               setQuantityTrends((prevQuantity) => prevQuantity + 5);
@@ -201,11 +222,27 @@ function App() {
             {quantityTrends < 50 && (
               <img alt="expand" src="./Arrowdownsee.svg"></img>
             )}
-          </div>
+          </button>
         )}
       </div>
 
-      {isError && (
+      {!countryExists && (
+        <span
+          style={{
+            transform:
+              height <= 220
+                ? "translate(-50%, 87%)"
+                : height <= 420
+                ? "translate(-50%, 65%)"
+                : "translate(-50%, -50%)",
+          }}
+          className="App__errormessage"
+        >
+          Please, check if the name of the country you are looking for it's
+          correct.
+        </span>
+      )}
+      {countryExists && isError && (
         <span
           className="App__errormessage"
           style={{
