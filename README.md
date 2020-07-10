@@ -1,6 +1,7 @@
 # Twitter-Trending
 
-Made with ReactJS, it's an web that app fetches data from Twitter API and display them as a simple list. It's possible to search for the topics by country.
+Made with ReactJS, it's an web that app fetches data from Twitter API and display them as a simple list. <br />
+It's possible to search for the topics by country.
 
 ![Preview image](https://github.com/gsdeveloper/Twitter-Trending/blob/master/preview%20(1).png)
 
