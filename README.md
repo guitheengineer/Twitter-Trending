@@ -6,7 +6,7 @@ Made with ReactJS, it's an web that app fetches data from Twitter API and displa
 
 
 
-
+_______
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Available Scripts
