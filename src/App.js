@@ -149,7 +149,16 @@ function App() {
 
       <div className="App__container">
         <span className="App__container--title">
-          Trending now{" "}
+          <span
+            style={{
+              borderBottomWidth:
+                isLoading || isError || countryExists
+                  ? "0px !important"
+                  : "1px !important",
+            }}
+          >
+            Trending now{" "}
+          </span>
           {/* <img
             src="Arrowdown.svg"
             alt="change trends time"

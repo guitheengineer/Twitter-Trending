@@ -38,22 +38,18 @@ body {
       border-radius: 0 0 1.5rem 1.5rem;
       width: 24rem;
     }
-
     position: absolute;
     background: #fdfdfd;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02);
     width: 15rem;
     height: 5rem;
-
     border-radius: 0 0 1.5rem 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
     height: 5rem;
     input {
       width: 80%;
-
       position: relative;
       border-width: 0 0 0.1rem 0;
       border-color: #a8a8a8;
@@ -109,10 +105,13 @@ body {
       border-bottom: 0.1rem solid #e6e6ec;
       padding: 2.33rem 0 1.941rem 0rem;
       text-align: center;
-      margin-left: -0.5rem;
+
       display: block;
       height: 6.9rem;
-      font: 2.3rem Roboto;
+      span {
+        margin-left: -0.5rem;
+        font: 2.3rem Roboto;
+      }
       &--image {
         margin-left: 0.32rem;
       }
