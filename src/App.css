@@ -28,7 +28,7 @@ body {
       left: 50%;
       transform: translateX(-50%);
       border-radius: 0 0 1.5rem 1.5rem;
-      width: 24rem; } }
+      width: 26rem; } }
   .App__location input {
     width: 80%;
     position: relative;
@@ -45,7 +45,8 @@ body {
     width: 3rem;
     height: auto;
     margin-left: 0rem;
-    margin-right: 1.9rem; }
+    margin-right: 1.9rem;
+    cursor: pointer; }
     @media (max-width: 562px) {
       .App__location--image {
         width: 1.7rem; } }
@@ -64,7 +65,7 @@ body {
       margin-top: 0.5rem; }
 
 .App__container {
-  width: 24rem;
+  width: 26rem;
   top: 3.8rem;
   height: auto;
   position: absolute;
@@ -80,10 +81,11 @@ body {
     border-bottom: 0.1rem solid #e6e6ec;
     padding: 2.33rem 0 1.941rem 0rem;
     text-align: center;
-    margin-left: -0.5rem;
     display: block;
-    height: 6.9rem;
-    font: 2.3rem Roboto; }
+    height: 6.9rem; }
+    .App__container--title span {
+      margin-left: -0.5rem;
+      font: 2.3rem Roboto; }
     .App__container--title--image {
       margin-left: 0.32rem; }
   .App__container--list {
@@ -94,7 +96,7 @@ body {
     color: #000000; }
     .App__container--list--item {
       display: block;
-      padding: 1.55rem 1rem 1.653rem 4.1rem; }
+      padding: 1.55rem 1rem 1.653rem 4.6rem; }
       .App__container--list--item:not(:last-child) {
         border-bottom: 0.1rem solid #e6e6ec; }
       .App__container--list--item--number {
