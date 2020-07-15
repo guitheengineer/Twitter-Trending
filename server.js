@@ -3,6 +3,8 @@ const express = require("express");
 const twit = require("twitter");
 const woeid = require("woeid");
 const path = require("path");
+const { getSingleWOEID } = require("twitter-woeid");
+
 const twitter = new twit({
   consumer_key: process.env.API_CONSUMER,
   consumer_secret: process.env.API_CONSUMER_SECRET,
@@ -13,29 +15,13 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.get("/api/trends/:place", (req, res) => {
-  if (req.params.place) {
-    if (req.params.place == "1") {
-      const params = { id: "1" };
-      twitter.get("trends/place", params, function (error, data, response) {
-        res.json(data);
-        console.log(data, "data");
-      });
-    } else {
-      const getWoeid = woeid.getWoeid(
-        req.params.place
-          .toLowerCase()
-          .split(" ")
-          .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-          .join(" ")
-      ).woeid;
-      const params = { id: getWoeid };
-      console.log(getWoeid);
-      console.log(req.params.place, "req<<");
-      twitter.get("trends/place", params, function (error, data, response) {
-        res.json(data);
-      });
-    }
-  }
+  console.log(req.params.place, "params place<<");
+  const id = getSingleWOEID(req.params.place)[0].woeid;
+  console.log(id);
+  twitter.get("trends/place", { id }, function (error, data) {
+    const currentTrendings = data[0].trends;
+    res.json(currentTrendings);
+  });
 });
 
 if (process.env.NODE_ENV === "production") {
