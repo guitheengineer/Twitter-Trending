@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
-import { dispatchContext, globalData } from "../Context";
+import { globalData } from "../Context";
 function ErrorHandler() {
-  const { countryExists, height, isError, isLoading } = useContext(globalData);
+  const { currentTrendingCountry, height, isError, isLoading } = useContext(
+    globalData
+  );
 
   return (
     <>
-      {!countryExists && !isLoading && (
+      {currentTrendingCountry === undefined && !isLoading && (
         <span
           style={{
             transform:
@@ -21,7 +23,7 @@ function ErrorHandler() {
           correct.
         </span>
       )}
-      {countryExists && isError && (
+      {currentTrendingCountry !== undefined && isError && (
         <span
           className="App__errormessage"
           style={{

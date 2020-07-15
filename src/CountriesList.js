@@ -6,7 +6,6 @@ export const countries = [
   { name: "Australia" },
   { name: "Austria" },
   { name: "Bahrain" },
-  { name: "Belarus" },
   { name: "Belgium" },
   { name: "Bolivia" },
   { name: "Brazil" },

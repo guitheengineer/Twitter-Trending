@@ -11,7 +11,7 @@ export default function Context({ children }) {
     currentTrendingCountry: "Worldwide",
     isLoading: false,
     isError: false,
-    countryExists: true,
+
     width: 0,
     height: 0,
   };
@@ -27,11 +27,6 @@ export default function Context({ children }) {
         return {
           ...state,
           currentTrendingCountry: action.payload,
-        };
-      case "SET_COUNTRY_DONT_EXISTS":
-        return {
-          ...state,
-          countryExists: false,
         };
       case "SET_INPUT":
         return {
@@ -67,7 +62,6 @@ export default function Context({ children }) {
         return {
           ...state,
           trendList: action.payload,
-          countryExists: true,
         };
       default:
         return "default";

@@ -52,6 +52,7 @@ export default function SearchBar() {
       <Autocomplete
         items={countries}
         shouldItemRender={(item, value) =>
+          item.name.toLowerCase().startsWith(value.toLowerCase().charAt(0)) &&
           item.name.toLowerCase().indexOf(value.toLowerCase()) > -1 &&
           item.name !== ""
         }

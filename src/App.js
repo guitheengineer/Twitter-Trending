@@ -2,7 +2,7 @@
 
 */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import fetchData from "./fetchData";
 import SearchBar from "./components/SearchBar";
@@ -32,20 +32,18 @@ function App() {
       .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
       .join(" ");
 
-    let matchedCountries = [];
+    let countryMatched;
     countries.find(inputTypeExists);
     function inputTypeExists(el) {
       if (input === "") {
-        return (matchedCountries[0] = "Worldwide");
+        return (countryMatched = "Worldwide");
       }
       if (el.name.includes(inputCapitalize)) {
-        return (matchedCountries[0] = el.name);
-      } else {
-        return dispatch({ type: "SET_COUNTRY_DONT_EXISTS" });
+        return (countryMatched = el.name);
       }
     }
-    console.log(matchedCountries[0]);
-    dispatch({ type: "SET_CURRENT_COUNTRY", payload: matchedCountries[0] });
+
+    dispatch({ type: "SET_CURRENT_COUNTRY", payload: countryMatched });
   }, [input]);
 
   useEffect(() => {

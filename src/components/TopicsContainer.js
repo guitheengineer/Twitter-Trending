@@ -10,7 +10,6 @@ export default function TopicsContainer() {
   const {
     isLoading,
     isError,
-    countryExists,
     currentTrendingCountry,
     trendList,
     quantityTrends,
@@ -21,7 +20,7 @@ export default function TopicsContainer() {
         <span
           style={{
             borderBottomWidth:
-              isLoading || isError || countryExists
+              isLoading || isError || currentTrendingCountry !== undefined
                 ? "0px !important"
                 : "1px !important",
           }}
@@ -59,7 +58,7 @@ export default function TopicsContainer() {
         />
       </span>
 
-      {countryExists && !isError && (
+      {currentTrendingCountry !== undefined && !isError && (
         <ol className="App__container--list">
           {trendList.map((tE, index) => (
             <li key={tE.name} className="App__container--list--item">
@@ -84,7 +83,7 @@ export default function TopicsContainer() {
           ))}
         </ol>
       )}
-      {countryExists && !isLoading && !isError && (
+      {currentTrendingCountry !== undefined && !isLoading && !isError && (
         <span
           className="App__seemore"
           onClick={() => dispatch({ type: "SET_QUANTITY_TRENDS" })}
