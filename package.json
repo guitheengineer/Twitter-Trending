@@ -27,7 +27,7 @@
     "react": "^16.13.1",
     "react-autocomplete": "^1.8.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "3.4.1",
     "react-spinners": "^0.8.3",
     "serve": "^11.3.0",
     "twit": "^2.2.11",
@@ -37,12 +37,14 @@
   },
   "scripts": {
     "sass": "node-sass -w src/sass/main.scss src/App.css",
+    "client": "npm run start-react",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "start": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
