@@ -1,6 +1,10 @@
 {
   "name": "twitter-trending-topics",
+  "description": "See current trending topics of twitter.",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.x"
+  },
   "private": true,
   "proxy": "http://localhost:5000/",
   "presets": [
