@@ -14,17 +14,18 @@ export default function TopicsContainer() {
     trendList,
     quantityTrends,
   } = data;
+
+  function titleStyle() {
+    if (isLoading || isError || currentTrendingCountry !== undefined) {
+      return { borderBottomWidth: "0px !important" };
+    } else {
+      return { borderBottomWidth: "1px !important" };
+    }
+  }
   return (
     <div className="App__container">
       <span className="App__container--title">
-        <span
-          style={{
-            borderBottomWidth:
-              isLoading || isError || currentTrendingCountry !== undefined
-                ? "0px !important"
-                : "1px !important",
-          }}
-        >
+        <span style={titleStyle()}>
           {currentTrendingCountry === undefined
             ? "Error"
             : currentTrendingCountry === ""
