@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const twit = require("twitter");
-const woeid = require("woeid");
 const path = require("path");
 const { getSingleWOEID } = require("twitter-woeid");
 
