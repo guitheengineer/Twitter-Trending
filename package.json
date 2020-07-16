@@ -37,6 +37,7 @@
   },
   "scripts": {
     "sass": "node-sass -w src/sass/main.scss src/App.css",
+    "react-start": "react-scripts start",
     "server": "nodemon server.js",
     "dev": "react-scripts start",
     "start": "serve -s build",

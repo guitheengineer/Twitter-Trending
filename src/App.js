@@ -15,7 +15,7 @@ import ErrorHandler from "./components/ErrorHandler";
 function App() {
   const dispatch = useContext(dispatchContext);
   const data = useContext(globalData);
-  const { width, height, input, currentTrendingCountry } = data;
+  const { width, height, input, currentTrendingCountry, quantityTrends } = data;
 
   useEffect(() => {
     dispatch({
@@ -48,7 +48,7 @@ function App() {
 
   useEffect(() => {
     fetchData(dispatch, data);
-  }, [currentTrendingCountry]);
+  }, [currentTrendingCountry, quantityTrends]);
 
   return (
     <div className="App">

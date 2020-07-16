@@ -3,6 +3,7 @@ import { dispatchContext, globalData } from "../Context";
 import fetchData from "../fetchData";
 import format from "../RoundingNumbers";
 import ClipLoader from "react-spinners/ClipLoader";
+import SeeMore from "./SeeMore";
 
 export default function TopicsContainer() {
   const dispatch = useContext(dispatchContext);
@@ -84,18 +85,7 @@ export default function TopicsContainer() {
           ))}
         </ol>
       )}
-      {currentTrendingCountry !== undefined && !isLoading && !isError && (
-        <span
-          className="App__seemore"
-          onClick={() => dispatch({ type: "SET_QUANTITY_TRENDS" })}
-        >
-          {quantityTrends >= 50 ? <span></span> : <span>See more</span>}
-
-          {quantityTrends < 50 && (
-            <img alt="expand" src="./Arrowdownsee.svg"></img>
-          )}
-        </span>
-      )}
+      <SeeMore />
     </div>
   );
 }
