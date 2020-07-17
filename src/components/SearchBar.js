@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Autocomplete from "react-autocomplete";
 import { countries } from "../CountriesList";
-import { useContext } from "react";
 import { dispatchContext, globalData } from "../Context";
 
 export default function SearchBar() {
   const dispatch = useContext(dispatchContext);
   const { input, width } = useContext(globalData);
+
+  // Hook to deal with country being fetched
+  useEffect(() => {
+    let countryMatched;
+    countries.find(inputTypeExists);
+    function inputTypeExists(el) {
+      if (input === "") {
+        return (countryMatched = "Worldwide");
+      }
+      if (
+        el.name.toLowerCase().startsWith(input.toLowerCase().charAt(0)) &&
+        el.name.toLowerCase().includes(input.toLowerCase())
+      ) {
+        console.log(input);
+        return (countryMatched = el.name);
+      }
+    }
+
+    dispatch({
+      type: "SET_CURRENT_COUNTRY",
+      payload: countryMatched,
+    });
+  }, [input]);
 
   function searchBarStyling(isHighlighted) {
     let commonStyle = {
@@ -19,7 +41,11 @@ export default function SearchBar() {
         ...commonStyle,
         padding: "1rem 1.5rem",
       };
-    else return { ...commonStyle, padding: "1rem 1.5rem" };
+    else
+      return {
+        ...commonStyle,
+        padding: "1rem 1.5rem",
+      };
   }
   function menuStyle() {
     let commonStyle = {
@@ -29,20 +55,20 @@ export default function SearchBar() {
       background: "rgba(255, 255, 255, 0.9)",
       padding: "0px 0",
       fontSize: "90%",
-      position: "fixed",
+      position: "absolute",
       overflow: "auto",
       zIndex: "999999",
     };
     if (width > 592)
       return {
         ...commonStyle,
-        maxHeight: "50%",
+        maxHeight: "500%",
         left: "1.5rem",
       };
     else
       return {
         ...commonStyle,
-        maxHeight: "100%",
+        maxHeight: "200%",
         left: "2.5rem",
       };
   }
@@ -72,7 +98,12 @@ export default function SearchBar() {
             payload: e.target.value,
           });
         }}
-        onSelect={(e) => dispatch({ type: "SET_INPUT", payload: e })}
+        onSelect={(e) =>
+          dispatch({
+            type: "SET_INPUT",
+            payload: e,
+          })
+        }
         menuStyle={menuStyle()}
       />
       <img

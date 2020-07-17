@@ -1,52 +1,36 @@
-/*
-
-*/
-
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import "./App.css";
 import fetchData from "./fetchData";
 import SearchBar from "./components/SearchBar";
-import { countries } from "./CountriesList";
-import { useContext } from "react";
 import { dispatchContext, globalData } from "./Context";
-import TopicsContainer from "./components/TopicsContainer";
+import TopicsContainer from "./components/TopicsContainer/TopicsContainer";
 import ErrorHandler from "./components/ErrorHandler";
+import SeeMore from "./components/SeeMore";
 
 function App() {
   const dispatch = useContext(dispatchContext);
   const data = useContext(globalData);
-  const { width, height, input, currentTrendingCountry, quantityTrends } = data;
+  const { width, height, currentTrendingCountry, quantityTrends } = data;
 
+  // Hook for setting width and height app dimensions
   useEffect(() => {
-    dispatch({
-      type: "SET_DIMENSIONS",
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  }, [width, height]);
+    window.addEventListener("resize", setDimensions);
 
-  useEffect(() => {
-    const inputCapitalize = input
-      .toLowerCase()
-      .split(" ")
-      .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-      .join(" ");
-
-    let countryMatched;
-    countries.find(inputTypeExists);
-    function inputTypeExists(el) {
-      if (input === "") {
-        return (countryMatched = "Worldwide");
-      }
-      if (el.name.includes(inputCapitalize)) {
-        return (countryMatched = el.name);
-      }
+    function setDimensions() {
+      console.log("happening");
+      dispatch({
+        type: "SET_DIMENSIONS",
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
     }
 
-    dispatch({ type: "SET_CURRENT_COUNTRY", payload: countryMatched });
-  }, [input]);
+    return () => window.removeEventListener("resize", setDimensions);
+  }, [width, height]);
 
+  // Hook for fetching data
   useEffect(() => {
+    // Run function responsible for fetching.
     fetchData(dispatch, data);
   }, [currentTrendingCountry, quantityTrends]);
 
@@ -55,6 +39,7 @@ function App() {
       <SearchBar />
       <TopicsContainer />
       <ErrorHandler />
+      <SeeMore />
     </div>
   );
 }
