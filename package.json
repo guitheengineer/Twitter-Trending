@@ -30,6 +30,7 @@
     "react-spinners": "^0.8.3",
     "serve": "^11.3.2",
     "twit": "^2.2.11",
+    "twitter": "^1.7.1",
     "twitter-woeid": "^1.0.2"
   },
   "scripts": {
