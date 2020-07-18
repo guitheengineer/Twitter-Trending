@@ -14,8 +14,6 @@ function App() {
 
   // Hook for setting width and height app dimensions
   useEffect(() => {
-    window.addEventListener("resize", setDimensions);
-
     function setDimensions() {
       console.log("happening");
       dispatch({
@@ -24,7 +22,8 @@ function App() {
         height: window.innerHeight,
       });
     }
-
+    setDimensions();
+    window.addEventListener("resize", setDimensions);
     return () => window.removeEventListener("resize", setDimensions);
   }, [width, height]);
 
