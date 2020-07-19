@@ -14,9 +14,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.get("/api/trends/:place", (req, res) => {
-  console.log(req.params.place, "params place<<");
   const id = getSingleWOEID(req.params.place)[0].woeid;
-  console.log(id);
   twitter.get("trends/place", { id }, function (error, data) {
     const currentTrendings = data[0].trends;
     res.json(currentTrendings);

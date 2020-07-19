@@ -20,7 +20,6 @@ export default function SearchBar() {
         el.name.toLowerCase().startsWith(input.toLowerCase().charAt(0)) &&
         el.name.toLowerCase().includes(input.toLowerCase())
       ) {
-        console.log(input);
         return (countryMatched = el.name);
       }
     }
