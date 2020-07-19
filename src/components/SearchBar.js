@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from "react";
 import Autocomplete from "react-autocomplete";
 import { countries } from "../CountriesList";
@@ -31,21 +32,12 @@ export default function SearchBar() {
   }, [input]);
 
   function searchBarStyling(isHighlighted) {
-    let commonStyle = {
+    return {
       font: "1.3rem Roboto",
       backgroundColor: isHighlighted ? "#EDEDED" : "transparent",
       borderBottom: "1px solid #E6E6EC",
+      padding: "1rem 1.5rem",
     };
-    if (width > 562)
-      return {
-        ...commonStyle,
-        padding: "1rem 1.5rem",
-      };
-    else
-      return {
-        ...commonStyle,
-        padding: "1rem 1.5rem",
-      };
   }
   function menuStyle() {
     let commonStyle = {

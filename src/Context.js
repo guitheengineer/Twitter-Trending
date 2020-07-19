@@ -3,6 +3,7 @@ import { createContext } from "react";
 
 const dispatchContext = createContext();
 const globalData = createContext();
+
 export default function Context({ children }) {
   const initialState = {
     trendList: [],
@@ -11,7 +12,6 @@ export default function Context({ children }) {
     currentTrendingCountry: "Worldwide",
     isLoading: false,
     isError: false,
-
     width: 0,
     height: 0,
   };
@@ -67,7 +67,9 @@ export default function Context({ children }) {
         return "default";
     }
   };
+
   const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
     <globalData.Provider value={state}>
       <dispatchContext.Provider value={dispatch}>

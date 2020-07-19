@@ -3,7 +3,7 @@ import { globalData } from "../../../Context";
 
 export default function TitleCountry() {
   const { isLoading, isError, currentTrendingCountry } = useContext(globalData);
-  // This function prevents that the last border will appear case something goes wrong.
+  // Prevents that the last border will appear case an error exists
   function borderWillApear() {
     if (isLoading || isError || currentTrendingCountry !== undefined) {
       return {
