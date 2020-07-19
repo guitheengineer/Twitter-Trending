@@ -5,7 +5,7 @@ import fetchData from "./fetchData";
 import SearchBar from "./components/SearchBar";
 import { dispatchContext, globalData } from "./Context";
 import TopicsContainer from "./components/TopicsContainer/TopicsContainer";
-import ErrorHandler from "./components/ErrorHandler";
+import ErrorMessage from "./components/ErrorMessage";
 import SeeMore from "./components/SeeMore";
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
     <div className="App">
       <SearchBar />
       <TopicsContainer />
-      <ErrorHandler />
+      <ErrorMessage />
       <SeeMore />
     </div>
   );

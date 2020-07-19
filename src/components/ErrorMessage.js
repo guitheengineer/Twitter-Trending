@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { globalData } from "../Context";
-function ErrorHandler() {
+function ErrorMessage() {
   const { currentTrendingCountry, isError, isLoading } = useContext(globalData);
 
   function errorMessage() {
@@ -15,4 +15,4 @@ function ErrorHandler() {
   return <span className="App__errormessage">{errorMessage()}</span>;
 }
 
-export default ErrorHandler;
+export default ErrorMessage;
