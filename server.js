@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const twit = require("twitter");
 const path = require("path");
-const { getSingleWOEID } = require("twitter-woeid");
+const { getSingleWOEID } = require("./getSingleWoeid");
 
 const twitter = new twit({
   consumer_key: process.env.API_CONSUMER,
@@ -14,7 +14,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.get("/api/trends/:place", (req, res) => {
-  const id = getSingleWOEID(req.params.place)[0].woeid;
+  const id = getSingleWOEID(req.params.place);
   twitter.get("trends/place", { id }, function (error, data) {
     const currentTrendings = data[0].trends;
     res.json(currentTrendings);
