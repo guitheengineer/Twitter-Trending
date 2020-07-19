@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext } from "react";
 import "./App.css";
 import fetchData from "./fetchData";
@@ -12,10 +13,9 @@ function App() {
   const data = useContext(globalData);
   const { width, height, currentTrendingCountry, quantityTrends } = data;
 
-  // Hook for setting width and height app dimensions
+  // Hook for setting width and height app dimensions, including when user resizes the window.
   useEffect(() => {
     function setDimensions() {
-      console.log("happening");
       dispatch({
         type: "SET_DIMENSIONS",
         width: window.innerWidth,
@@ -29,7 +29,6 @@ function App() {
 
   // Hook for fetching data
   useEffect(() => {
-    // Run function responsible for fetching.
     fetchData(dispatch, data);
   }, [currentTrendingCountry, quantityTrends]);
 

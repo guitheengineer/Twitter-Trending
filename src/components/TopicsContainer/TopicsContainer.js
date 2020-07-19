@@ -10,13 +10,13 @@ export default function TopicsContainer() {
   return (
     <div className="App__container">
       <TitleArea />
-
       {currentTrendingCountry !== undefined && !isError && (
         <ol className="App__container--list">
           {trendList.map((tE, index) => (
             <li key={tE.name} className="App__container--list--item">
               <span
                 className="App__container--list--item--number"
+                // Maintain trends alignment
                 style={{ marginLeft: index + 1 >= 10 ? "-2.5rem" : "-2rem" }}
               >
                 {index + 1}
@@ -27,6 +27,7 @@ export default function TopicsContainer() {
                   window.open(tE.url);
                 }}
               >
+                {/* Short long trending topics */}
                 {tE.name.length >= 19 ? `${tE.name.slice(0, 19)}...` : tE.name}
               </span>
               <p className="App__container--list--item--quantity">
