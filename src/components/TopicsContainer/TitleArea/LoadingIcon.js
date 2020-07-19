@@ -7,7 +7,8 @@ function LoadingIcon() {
 }
 
 const style = `
-            margin-left: 6px;
+            position: relative;
+            left: 6px;
             border-radius: 100%;
             border: 1px solid;
             border-color: #000000;

@@ -65,7 +65,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="App__location">
+    <div className="App__searchbar">
       <Autocomplete
         items={countries}
         shouldItemRender={(item, value) =>
@@ -100,7 +100,7 @@ export default function SearchBar() {
       <img
         src="./Searchicon.svg"
         alt="change trends time"
-        className="App__location--image"
+        className="App__searchbar--image"
       ></img>
     </div>
   );

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { globalData, dispatchContext } from "../../../Context";
 import fetchData from "../../../fetchData";
-export default function RefreshIcon({ isError }) {
+export default function RefreshIcon() {
   const dispatch = useContext(dispatchContext);
   const data = useContext(globalData);
+  const { isError } = data;
   return (
     isError && (
       <img

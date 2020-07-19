@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { globalData } from "../../../Context";
+import LoadingIcon from "./LoadingIcon";
+import RefreshIcon from "./RefreshIcon";
 
 export default function TitleCountry() {
   const { isLoading, isError, currentTrendingCountry } = useContext(globalData);
@@ -26,5 +28,11 @@ export default function TitleCountry() {
     return `${currentTrendingCountry} Trends`;
   }
 
-  return <span style={borderWillApear()}>{returnText()}</span>;
+  return (
+    <span style={borderWillApear()}>
+      {returnText()}
+      <RefreshIcon />
+      <LoadingIcon />
+    </span>
+  );
 }

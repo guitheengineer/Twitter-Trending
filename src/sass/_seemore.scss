@@ -1,0 +1,14 @@
+.App__seemore {
+    position: relative;
+    margin-top: 0.6rem;
+    padding-bottom: 3rem;
+    cursor: pointer;
+    span {
+        font: 14px Roboto;
+        line-height: 16px;
+        color: #636363;
+    }
+    img {
+        margin-left: 0.5rem;
+    }
+}

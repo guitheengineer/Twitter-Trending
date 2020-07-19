@@ -21,116 +21,121 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center; }
-  .App__location {
-    border-radius: 0 0 1.5rem 0;
-    width: 15rem;
-    align-self: normal;
+
+.App__errormessage {
+  font: 1.8rem Roboto;
+  line-height: 150%;
+  margin-top: 3rem;
+  width: 28rem;
+  text-align: center; }
+
+.App__searchbar {
+  border-radius: 0 0 1.5rem 0;
+  width: 15rem;
+  align-self: normal;
+  position: relative;
+  background: #fdfdfd;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02);
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  @media (max-width: 562px) {
+    .App__searchbar {
+      border-radius: 0 0 1.5rem 1.5rem;
+      width: 26rem;
+      align-self: center; } }
+  .App__searchbar input {
+    width: 80%;
     position: relative;
-    background: #fdfdfd;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02);
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
+    border-width: 0 0 0.1rem 0;
+    border-color: #a8a8a8;
+    padding: 0.1rem 0.2rem;
+    left: 1.5rem;
+    font: 1.7rem Roboto;
+    margin-top: -0.1rem; }
     @media (max-width: 562px) {
-      .App__location {
-        border-radius: 0 0 1.5rem 1.5rem;
-        width: 26rem;
-        align-self: center; } }
-    .App__location input {
-      width: 80%;
-      position: relative;
-      border-width: 0 0 0.1rem 0;
-      border-color: #a8a8a8;
-      padding: 0.1rem 0.2rem;
-      left: 1.5rem;
-      font: 1.7rem Roboto;
-      margin-top: -0.1rem; }
-      @media (max-width: 562px) {
-        .App__location input {
-          left: 2.5rem; } }
-    .App__location ::-webkit-scrollbar {
-      width: 5px;
-      height: 80%;
-      background-color: black; }
-    .App__location ::-webkit-scrollbar-track {
-      background: #dadada; }
-    .App__location ::-webkit-scrollbar-thumb {
-      background: #888; }
-    .App__location--image {
-      width: 3rem;
-      height: auto;
-      margin-left: 0rem;
-      margin-right: 1.9rem;
-      cursor: pointer; }
-      @media (max-width: 562px) {
-        .App__location--image {
-          width: 1.7rem; } }
-  .App__container {
-    width: 26rem;
-    margin-top: 0rem;
+      .App__searchbar input {
+        left: 2.5rem; } }
+  .App__searchbar ::-webkit-scrollbar {
+    width: 5px;
+    height: 80%;
+    background-color: black; }
+  .App__searchbar ::-webkit-scrollbar-track {
+    background: #dadada; }
+  .App__searchbar ::-webkit-scrollbar-thumb {
+    background: #888; }
+  .App__searchbar--image {
+    width: 3rem;
+    height: auto;
+    margin-left: 0rem;
+    margin-right: 1.9rem;
+    cursor: pointer; }
+    @media (max-width: 562px) {
+      .App__searchbar--image {
+        width: 1.7rem; } }
+
+.App__seemore {
+  position: relative;
+  margin-top: 0.6rem;
+  padding-bottom: 3rem;
+  cursor: pointer; }
+  .App__seemore span {
+    font: 14px Roboto;
+    line-height: 16px;
+    color: #636363; }
+  .App__seemore img {
+    margin-left: 0.5rem; }
+
+.App__container {
+  width: 26rem;
+  margin-top: 0rem;
+  height: auto;
+  position: relative;
+  background: #fdfdfd;
+  box-shadow: 0px 0.4rem 0.4rem rgba(0, 0, 0, 0.04);
+  border-radius: 1.5rem; }
+  @media (max-width: 562px) {
+    .App__container {
+      margin-top: 3.8rem; } }
+  .App__container--titlearea {
+    border-bottom: 0.1rem solid #e6e6ec;
+    padding: 2.33rem 0 1.941rem 0rem;
+    text-align: center;
+    height: auto;
+    flex-direction: column;
+    display: flex;
+    justify-content: center; }
+    .App__container--titlearea span {
+      font: 2.3rem Roboto;
+      margin-left: -0.1rem; }
+    .App__container--titlearea--image {
+      margin-left: 0.32rem; }
+  .App__container--list {
+    counter-reset: item;
+    margin-left: 0;
+    padding-left: 0;
+    font: 1.5rem Roboto;
+    color: #000000; }
+    .App__container--list--item {
+      display: block;
+      padding: 1.55rem 1rem 1.653rem 4.6rem; }
+      .App__container--list--item:not(:last-child) {
+        border-bottom: 0.1rem solid #e6e6ec; }
+      .App__container--list--item--number {
+        position: absolute; }
+      .App__container--list--item--topic {
+        font: 1.6rem Roboto;
+        color: #000000;
+        cursor: pointer; }
+      .App__container--list--item--quantity {
+        position: relative;
+        top: 0.194rem;
+        font: 1.2rem Roboto;
+        color: #8a8a8a; }
+  .App__container--refresh {
+    width: 1.4rem;
     height: auto;
     position: relative;
-    background: #fdfdfd;
-    box-shadow: 0px 0.4rem 0.4rem rgba(0, 0, 0, 0.04);
-    border-radius: 1.5rem; }
-    @media (max-width: 562px) {
-      .App__container {
-        margin-top: 3.8rem; } }
-    .App__container--titlearea {
-      border-bottom: 0.1rem solid #e6e6ec;
-      padding: 2.33rem 0 1.941rem 0rem;
-      text-align: center;
-      height: auto;
-      flex-direction: column;
-      display: flex;
-      justify-content: center; }
-      .App__container--titlearea span {
-        font: 2.3rem Roboto;
-        margin-left: -0.1rem; }
-      .App__container--titlearea--image {
-        margin-left: 0.32rem; }
-    .App__container--list {
-      counter-reset: item;
-      margin-left: 0;
-      padding-left: 0;
-      font: 1.5rem Roboto;
-      color: #000000; }
-      .App__container--list--item {
-        display: block;
-        padding: 1.55rem 1rem 1.653rem 4.6rem; }
-        .App__container--list--item:not(:last-child) {
-          border-bottom: 0.1rem solid #e6e6ec; }
-        .App__container--list--item--number {
-          position: absolute; }
-        .App__container--list--item--topic {
-          font: 1.6rem Roboto;
-          color: #000000;
-          cursor: pointer; }
-        .App__container--list--item--quantity {
-          position: relative;
-          top: 0.194rem;
-          font: 1.2rem Roboto;
-          color: #8a8a8a; }
-    .App__container--refresh {
-      width: 1.4rem;
-      height: auto;
-      margin-left: 0.5rem;
-      cursor: pointer; }
-  .App__seemore {
-    position: relative;
-    margin-top: 0.6rem;
-    padding-bottom: 3rem;
+    left: 0.7rem;
     cursor: pointer; }
-    .App__seemore span {
-      font: 14px Roboto;
-      line-height: 16px;
-      color: #636363; }
-    .App__seemore img {
-      margin-left: 0.5rem; }
-  .App__errormessage {
-    font: 1.8rem Roboto;
-    line-height: 150%;
-    margin-top: 3rem;
-    width: 28rem;
-    text-align: center; }
